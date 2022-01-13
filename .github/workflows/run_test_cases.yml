@@ -24,7 +24,7 @@ jobs:
       - name: 'CocosCreator version'
         shell: bash
         run: |
-          echo "CocosCreator Version: ${{github.event.comment.ref}}"
+          echo "CocosCreator Version: ${{github.event.base_ref}}"
 
       - name: 'npm install'
         run: |
