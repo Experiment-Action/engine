@@ -12,6 +12,7 @@ on:
 jobs:
   run-test-cases:
     if: |
+      github.event.issue.pull_request &&
       contains(github.event.comment.body, '@cocos-robot run test cases')
     runs-on: run-test-win01
     steps:
