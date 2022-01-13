@@ -16,10 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: resolve pr refs
+        id: refs
+        uses: eficode/resolve-pr-refs@main    
+    
       - name: 'Checkout engine'
         uses: actions/checkout@v2
         with:
-          ref: ${{github.event.issue.pull_request.head.ref}}
+          ref: ${{ steps.refs.outputs.base_ref }}
           path: engine
 
       - name: 'CocosCreator version'
