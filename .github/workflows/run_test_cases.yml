@@ -18,13 +18,13 @@ jobs:
       - name: 'Checkout engine'
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_sha }}
+          ref: ${{ github.event.comment.ref }}
           path: engine
 
       - name: 'CocosCreator version'
         shell: bash
         run: |
-          echo "CocosCreator Version: ${{github.head_sha }}"
+          echo "CocosCreator Version: ${{github.event.comment.ref}}"
 
       - name: 'npm install'
         run: |
