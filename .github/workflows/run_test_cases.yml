@@ -13,18 +13,20 @@ jobs:
     if: |
       contains(github.event.comment.body, '@cocos-robot run test cases')
 
-    runs-on: run-test-win01
+    #runs-on: run-test-win01
+    runs-on: ubuntu-latest
 
     steps:
       - name: 'Checkout engine'
         uses: actions/checkout@v2
         with:
+          ref: ${{github.event.pull_request.head.ref}}
           path: engine
 
       - name: 'CocosCreator version'
         shell: bash
         run: |
-          echo "CocosCreator Version: ${{github.event.comment.ref}}"
+          echo "CocosCreator Version: ${{github.event.pull_request.head.ref}}"
 
       - name: 'npm install'
         run: |
@@ -34,4 +36,4 @@ jobs:
 
       - name: 'Call run test cases job'
         run: |
-          python3 -u ./pr-test/main.py ${{github.base_ref}}
+          python3 -u ./pr-test/main.py ${{github.event.pull_request.head.ref}}
